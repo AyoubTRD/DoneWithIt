@@ -1,6 +1,15 @@
 import React from "react";
-import { View, ImageBackground, StyleSheet, Image, Text } from "react-native";
+import {
+  View,
+  ImageBackground,
+  StyleSheet,
+  Image,
+  Text,
+  Platform,
+} from "react-native";
 
+import ButtonBase from "../components/ButtonBase";
+import Heading from "../components/Heading";
 import colors from "../config/colors";
 
 export default function WelcomeScreen() {
@@ -9,17 +18,18 @@ export default function WelcomeScreen() {
       <ImageBackground
         source={require("../assets/background.jpg")}
         style={styles.background}
+        blurRadius={2}
       >
         <View style={styles.header}>
           <Image
             source={require("../assets/logo-red.png")}
             style={styles.logo}
           />
-          <Text>Sell what you don't need</Text>
+          <Text style={styles.tagline}>Sell what you don't need</Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <View style={[styles.button, styles.primaryButton]}></View>
-          <View style={[styles.button, styles.secondaryButton]}></View>
+          <ButtonBase>Login</ButtonBase>
+          <ButtonBase color="secondary">Register</ButtonBase>
         </View>
       </ImageBackground>
     </View>
@@ -30,6 +40,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  buttonsContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+  },
   background: {
     flex: 1,
     justifyContent: "space-between",
@@ -38,18 +52,15 @@ const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
-    marginBottom: 15,
-  },
-  button: {
-    height: 70,
-  },
-  secondaryButton: {
-    backgroundColor: colors.secondary,
-  },
-  primaryButton: {
-    backgroundColor: colors.primary,
+    marginBottom: 20,
   },
   header: {
     alignItems: "center",
+  },
+  tagline: {
+    fontSize: 30,
+    textTransform: "capitalize",
+    fontWeight: Platform.OS === "android" ? "bold" : "600",
+    color: colors.black,
   },
 });
