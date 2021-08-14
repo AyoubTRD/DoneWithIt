@@ -4,13 +4,13 @@ import { Image, StyleSheet, View, Text } from "react-native";
 import colors from "../config/colors";
 import BodyText from "./BodyText";
 
-export default function Card({ title, source, price }) {
+export default function Card({ title, image, subtitle, style }) {
   return (
-    <View style={styles.card}>
-      <Image source={source} style={styles.image} />
+    <View style={[styles.card, ...style]}>
+      <Image source={image} style={styles.image} />
       <View style={styles.container}>
         <BodyText style={[styles.title]}>{title}</BodyText>
-        <BodyText style={[styles.price]}>{price}</BodyText>
+        <BodyText style={[styles.subtitle]}>{subtitle}</BodyText>
       </View>
     </View>
   );
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 5,
   },
-  price: {
+  subtitle: {
     color: colors.secondary,
   },
 });

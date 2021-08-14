@@ -11,6 +11,7 @@ import {
 import BodyText from "../components/BodyText";
 import ButtonBase from "../components/ButtonBase";
 import Heading from "../components/Heading";
+import ListItem from "../components/ListItem";
 import colors from "../config/colors";
 
 export default function ListingScreen({ title, price, image, seller }) {
@@ -20,15 +21,12 @@ export default function ListingScreen({ title, price, image, seller }) {
       <View style={styles.detailsContainer}>
         <Heading>{title}</Heading>
         <BodyText style={[styles.price]}>{price}</BodyText>
-        <View style={styles.sellerContainer}>
-          <Image source={seller.image} style={styles.sellerImage} />
-          <View style={styles.sellerDetailsContainer}>
-            <BodyText>{seller.name}</BodyText>
-            <BodyText style={[styles.sellerListings]}>
-              {seller.numberOfListings} Listing(s)
-            </BodyText>
-          </View>
-        </View>
+        <ListItem
+          style={[styles.sellerContainer]}
+          title={seller.name}
+          subTitle={`${seller.numberOfListings} Listing(s)`}
+          image={seller.image}
+        />
         <View style={styles.messageContainer}>
           <BodyText style={[styles.messageText]}>
             Is this still available?
@@ -47,7 +45,7 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   detailsContainer: {
-    padding: 25,
+    padding: 20,
   },
   image: {
     height: 270,
@@ -70,22 +68,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   sellerContainer: {
-    height: 65,
     marginVertical: 40,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  sellerDetailsContainer: {
-    height: "70%",
-    justifyContent: "space-between",
-  },
-  sellerImage: {
-    borderRadius: 100,
-    height: "100%",
-    width: 65,
-    marginRight: 15,
-  },
-  sellerListings: {
-    color: colors.darkGrey,
   },
 });
