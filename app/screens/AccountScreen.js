@@ -2,8 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
-import ListTile from "../components/ListTile";
-import ListItem from "../components/ListItem";
+import { ListItem, ListTile } from "../components/lists";
 import colors from "../config/colors";
 import Separator from "../components/Separator";
 

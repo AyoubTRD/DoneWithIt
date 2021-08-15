@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import BodyText from "./BodyText";
+import BodyText from "../BodyText";
 
 export default function AppPickerItem({ item, onPress }) {
   return (

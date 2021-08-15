@@ -11,7 +11,7 @@ import {
 import BodyText from "../components/BodyText";
 import ButtonBase from "../components/ButtonBase";
 import Heading from "../components/Heading";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/lists/ListItem";
 import colors from "../config/colors";
 
 export default function ListingScreen({ title, price, image, seller }) {

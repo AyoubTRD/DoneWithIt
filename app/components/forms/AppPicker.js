@@ -4,18 +4,15 @@ import {
   FlatList,
   Modal,
   StyleSheet,
-  TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colors from "../config/colors";
-import defaultStyles from "../config/defaultStyles";
-import BodyText from "./BodyText";
-import Screen from "./Screen";
+import colors from "../../config/colors";
+import defaultStyles from "../../config/defaultStyles";
+import BodyText from "../BodyText";
+import Screen from "../Screen";
 import AppPickerItem from "./AppPickerItem";
 
 export default function AppPicker({
@@ -23,6 +20,7 @@ export default function AppPicker({
   placeholder,
   items = [],
   onItemSelect,
+  onBlur = () => {},
   selectedItem,
 }) {
   const [modalVisisble, setModalVisible] = useState(false);
@@ -54,7 +52,13 @@ export default function AppPicker({
       <Modal animationType="slide" visible={modalVisisble}>
         <Screen>
           <View style={styles.modal}>
-            <Button title="Close" onPress={() => setModalVisible(false)} />
+            <Button
+              title="Close"
+              onPress={() => {
+                onBlur();
+                setModalVisible(false);
+              }}
+            />
 
             <FlatList
               data={items}
@@ -64,6 +68,7 @@ export default function AppPicker({
                   item={item}
                   onPress={() => {
                     setModalVisible(false);
+                    onBlur();
                     onItemSelect(item);
                   }}
                 />

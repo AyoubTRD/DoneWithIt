@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
-import sizes from "../config/sizes";
-import colors from "../config/colors";
+import sizes from "../../config/sizes";
+import colors from "../../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import BodyText from "./BodyText";
+import BodyText from "../BodyText";
 
 export default function ListTile({
   title,

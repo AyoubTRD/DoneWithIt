@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 
-import colors from "../config/colors";
-import sizes from "../config/sizes";
-import BodyText from "./BodyText";
+import colors from "../../config/colors";
+import sizes from "../../config/sizes";
+import BodyText from "../BodyText";
 
 export default function ListItem({
   title,

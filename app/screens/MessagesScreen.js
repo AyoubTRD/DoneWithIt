@@ -9,9 +9,9 @@ import {
 import { Swipeable } from "react-native-gesture-handler";
 
 import colors from "../config/colors";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/lists/ListItem";
 import Separator from "../components/Separator";
-import ListItemDeleteAction from "../components/ListItemDeleteAction";
+import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
 
 export default function MessagesScreen() {
   const [messages, setMessages] = useState([
