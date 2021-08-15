@@ -2,6 +2,7 @@ import React from "react";
 import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
+import sizes from "../config/sizes";
 
 export default function ButtonBase({
   children,
@@ -28,7 +29,7 @@ export default function ButtonBase({
 const styles = StyleSheet.create({
   button: {
     width: "100%",
-    padding: 15,
+    height: sizes.buttonHeight,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: 17.5,
     textTransform: "uppercase",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     fontWeight: "bold",

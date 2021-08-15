@@ -9,7 +9,7 @@ import Separator from "../components/Separator";
 
 export default function AccountScreen() {
   return (
-    <Screen>
+    <Screen backgroundColor={colors.lightgrey}>
       <View style={styles.screen}>
         <View style={styles.group}>
           <ListItem
@@ -46,5 +46,6 @@ const styles = StyleSheet.create({
   },
   screen: {
     paddingVertical: 20,
+    flex: 1,
   },
 });

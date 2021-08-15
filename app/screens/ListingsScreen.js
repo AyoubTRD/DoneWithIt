@@ -27,7 +27,7 @@ export default function ListingsScreen() {
       <View style={styles.screen}>
         <FlatList
           data={listings}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <Card
               style={[styles.card]}
