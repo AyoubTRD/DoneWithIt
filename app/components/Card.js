@@ -9,8 +9,12 @@ export default function Card({ title, image, subtitle, style }) {
     <View style={[styles.card, ...style]}>
       <Image source={image} style={styles.image} />
       <View style={styles.container}>
-        <BodyText style={[styles.title]}>{title}</BodyText>
-        <BodyText style={[styles.subtitle]}>{subtitle}</BodyText>
+        <BodyText style={[styles.title]} numberOfLines={2}>
+          {title}
+        </BodyText>
+        <BodyText style={[styles.subtitle]} numberOfLines={1}>
+          {subtitle}
+        </BodyText>
       </View>
     </View>
   );

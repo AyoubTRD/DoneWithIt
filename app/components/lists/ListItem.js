@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 import sizes from "../../config/sizes";
@@ -10,6 +11,7 @@ export default function ListItem({
   subTitle,
   image,
   onPress,
+  icon = "chevron-right",
   style = [],
 }) {
   return (
@@ -21,11 +23,14 @@ export default function ListItem({
       <View style={[styles.container, ...style]}>
         <Image source={image} style={styles.image} />
         <View style={styles.detailsContainer}>
-          <BodyText style={[styles.title]}>{title}</BodyText>
-          <BodyText style={[styles.subTitle]} numberOfLines={1}>
+          <BodyText style={[styles.title]} numberOfLines={1}>
+            {title}
+          </BodyText>
+          <BodyText style={[styles.subTitle]} numberOfLines={2}>
             {subTitle}
           </BodyText>
         </View>
+        {icon && <MaterialCommunityIcons name={icon} style={styles.icon} />}
       </View>
     </TouchableHighlight>
   );
@@ -55,5 +60,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "500",
+  },
+  icon: {
+    alignSelf: "center",
+    fontSize: 25,
+    marginLeft: 5,
+    color: colors.black,
   },
 });

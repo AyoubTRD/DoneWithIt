@@ -6,13 +6,16 @@ import BodyText from "../BodyText";
 export default function AppPickerItem({ item, onPress }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.item}>
-      <BodyText>{item.label}</BodyText>
+      <BodyText style={[styles.text]}>{item.label}</BodyText>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   item: {
-    marginVertical: 5,
+    marginVertical: 10,
+  },
+  text: {
+    fontSize: 20,
   },
 });

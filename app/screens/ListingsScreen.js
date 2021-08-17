@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
 import Card from "../components/Card";
+import colors from "../config/colors";
 
 const initialData = [
   {
@@ -48,5 +49,7 @@ const styles = StyleSheet.create({
   },
   screen: {
     paddingHorizontal: 25,
+    flex: 1,
+    backgroundColor: colors.lightgrey,
   },
 });

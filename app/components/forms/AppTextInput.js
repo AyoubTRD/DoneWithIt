@@ -6,9 +6,14 @@ import colors from "../../config/colors";
 import defaultStyles from "../../config/defaultStyles";
 import sizes from "../../config/sizes";
 
-export default function AppTextInput({ icon, style = [], ...props }) {
+export default function AppTextInput({
+  icon,
+  style = [],
+  width = "100%",
+  ...props
+}) {
   return (
-    <View style={[styles.inputContainer, ...style]}>
+    <View style={[styles.inputContainer, { width }, ...style]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
@@ -17,16 +22,20 @@ export default function AppTextInput({ icon, style = [], ...props }) {
           style={styles.icon}
         />
       )}
-      <TextInput style={[styles.input, defaultStyles.text]} {...props} />
+      <TextInput
+        style={[styles.input, defaultStyles.text]}
+        placeholderTextColor={colors.grey}
+        {...props}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: "100%",
     paddingHorizontal: 20,
-    height: sizes.buttonHeight,
+    paddingVertical: 10,
+    minHeight: sizes.buttonHeight,
     backgroundColor: colors.lightgrey,
     borderRadius: 30,
     flexDirection: "row",

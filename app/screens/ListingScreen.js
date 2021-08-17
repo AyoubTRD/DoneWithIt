@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   messageContainer: {
     borderRadius: 25,
-    backgroundColor: colors.grey,
+    backgroundColor: colors.lightgrey,
     width: "100%",
     paddingVertical: 10,
     paddingHorizontal: 20,

@@ -12,6 +12,7 @@ import colors from "../config/colors";
 import ListItem from "../components/lists/ListItem";
 import Separator from "../components/Separator";
 import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
+import Screen from "../components/Screen";
 
 export default function MessagesScreen() {
   const [messages, setMessages] = useState([
@@ -52,7 +53,7 @@ export default function MessagesScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen>
       <FlatList
         style={styles.messagesList}
         data={messages}
@@ -75,16 +76,11 @@ export default function MessagesScreen() {
         refreshing={refreshing}
         onRefresh={handleRefresh}
       />
-    </SafeAreaView>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    backgroundColor: colors.lightgrey,
-    flex: 1,
-  },
   message: {
     paddingHorizontal: 15,
   },
