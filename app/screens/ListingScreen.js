@@ -1,3 +1,4 @@
+import { useRoute } from "@react-navigation/native";
 import React from "react";
 import {
   Platform,
@@ -14,7 +15,13 @@ import Heading from "../components/Heading";
 import ListItem from "../components/lists/ListItem";
 import colors from "../config/colors";
 
-export default function ListingScreen({ title, price, image, seller }) {
+export default function ListingScreen({}) {
+  const {
+    params: {
+      listing: { title, price, image, seller },
+    },
+  } = useRoute();
+
   return (
     <View style={styles.container}>
       <Image source={image} style={styles.image} />

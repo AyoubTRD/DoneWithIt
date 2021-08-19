@@ -1,23 +1,22 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
+import { AppForm, AppFormField, AppSubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
-import colors from "../config/colors";
-import { AppFormField, AppSubmitButton, AppForm } from "../components/forms";
 
 const validationSchema = Yup.object({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(6).max(28).label("Password"),
+  name: Yup.string().required().label("Name"),
 });
 
-export default function LoginScreen() {
+function RegisterScreen({}) {
   return (
     <Screen>
-      <View style={styles.screen}>
-        <Image source={require("../assets/logo-red.png")} style={styles.logo} />
+      <View style={styles.container}>
         <AppForm
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: "", password: "", name: "" }}
           onSubmit={(values) => console.log(values)}
           validationSchema={validationSchema}
         >
@@ -30,6 +29,7 @@ export default function LoginScreen() {
             autoCapitalize="none"
             autoCorrect={false}
           />
+          <AppFormField name="name" icon="account" placeholder="Name" />
 
           <AppFormField
             name="password"
@@ -40,7 +40,7 @@ export default function LoginScreen() {
             autoCompleteType="password"
             secureTextEntry
           />
-          <AppSubmitButton>Login</AppSubmitButton>
+          <AppSubmitButton>Register</AppSubmitButton>
         </AppForm>
       </View>
     </Screen>
@@ -48,16 +48,9 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  container: {
     paddingHorizontal: 15,
   },
-  logo: {
-    width: 80,
-    height: 80,
-    marginVertical: 30,
-    alignSelf: "center",
-  },
-  errorMessage: {
-    color: colors.red,
-  },
 });
+
+export default RegisterScreen;

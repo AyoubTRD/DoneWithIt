@@ -84,7 +84,4 @@ const styles = StyleSheet.create({
   message: {
     paddingHorizontal: 15,
   },
-  messagesList: {
-    paddingVertical: 15,
-  },
 });

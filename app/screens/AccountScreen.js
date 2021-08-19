@@ -5,8 +5,12 @@ import Screen from "../components/Screen";
 import { ListItem, ListTile } from "../components/lists";
 import colors from "../config/colors";
 import Separator from "../components/Separator";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../navigation/routes";
 
 export default function AccountScreen() {
+  const navigation = useNavigation();
+
   return (
     <Screen backgroundColor={colors.lightgrey}>
       <View style={styles.screen}>
@@ -25,6 +29,7 @@ export default function AccountScreen() {
             title="My messages"
             icon="email"
             iconColor={colors.secondary}
+            onPress={() => navigation.navigate(routes.MESSAGES)}
           />
         </View>
         <View style={styles.group}>

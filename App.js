@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import AppPicker from "./app/components/forms/AppPicker";
-import AppTextInput from "./app/components/forms/AppTextInput";
+import "react-native-gesture-handler";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
-import Screen from "./app/components/Screen";
-import AccountScreen from "./app/screens/AccountScreen";
-import ListingEditScreen from "./app/screens/ListingEditScreen";
-import ListingScreen from "./app/screens/ListingScreen";
-import ListingsScreen from "./app/screens/ListingsScreen";
-import LoginScreen from "./app/screens/LoginScreen";
-import MessagesScreen from "./app/screens/MessagesScreen";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
+import theme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 export default function App() {
-  return <ListingEditScreen />;
+  return (
+    <NavigationContainer theme={theme}>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 }

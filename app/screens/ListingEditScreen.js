@@ -1,18 +1,23 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
+import * as Location from "expo-location";
 
 import { AppForm, AppFormField, AppSubmitButton } from "../components/forms";
 import AppFormPicker from "../components/forms/AppFormPicker";
 import CategoryPickerItem from "../components/forms/CategoryPickerItem";
+import FormImageInputList from "../components/forms/FormImageInputList";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import defaultStyles from "../config/defaultStyles";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   category: Yup.object().required().nullable().label("Category"),
   title: Yup.string().required().max(64).label("Title"),
   description: Yup.string().required().max(1000).label("Description"),
   price: Yup.number().required().min(0).max(10000).label("Price"),
+  images: Yup.array().required().min(1, "Please select at least one image"),
 });
 
 const categories = [
@@ -73,6 +78,8 @@ const categories = [
 ];
 
 function ListingEditScreen(props) {
+  const location = useLocation();
+
   return (
     <Screen>
       <View style={styles.screen}>
@@ -82,10 +89,12 @@ function ListingEditScreen(props) {
             price: "",
             description: "",
             category: null,
+            images: [],
           }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => console.log(location)}
           validationSchema={validationSchema}
         >
+          <FormImageInputList name="images" maxNumberOfImages={3} />
           <AppFormField name="title" placeholder="Title" autoCorrect />
           <AppFormField
             name="price"

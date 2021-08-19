@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   View,
@@ -9,10 +10,12 @@ import {
 } from "react-native";
 
 import ButtonBase from "../components/ButtonBase";
-import Heading from "../components/Heading";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 export default function WelcomeScreen() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -28,8 +31,15 @@ export default function WelcomeScreen() {
           <Text style={styles.tagline}>Sell what you don't need</Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <ButtonBase>Login</ButtonBase>
-          <ButtonBase color="secondary">Register</ButtonBase>
+          <ButtonBase onPress={() => navigation.navigate(routes.LOGIN)}>
+            Login
+          </ButtonBase>
+          <ButtonBase
+            color="secondary"
+            onPress={() => navigation.navigate(routes.REGISTER)}
+          >
+            Register
+          </ButtonBase>
         </View>
       </ImageBackground>
     </View>
