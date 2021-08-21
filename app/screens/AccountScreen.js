@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
@@ -7,8 +7,11 @@ import colors from "../config/colors";
 import Separator from "../components/Separator";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../navigation/routes";
+import useAuth from "../hooks/useAuth";
 
 export default function AccountScreen() {
+  const { user, logOut } = useAuth();
+
   const navigation = useNavigation();
 
   return (
@@ -16,8 +19,8 @@ export default function AccountScreen() {
       <View style={styles.screen}>
         <View style={styles.group}>
           <ListItem
-            title="Ayoub Taouarda"
-            subTitle="ayoubtrd@gmail.com"
+            title={user.name}
+            subTitle={user.email}
             image={require("../assets/avatar.jpg")}
             style={[styles.profile]}
           />
@@ -33,7 +36,12 @@ export default function AccountScreen() {
           />
         </View>
         <View style={styles.group}>
-          <ListTile title="Log out" icon="logout" iconColor={colors.yellow} />
+          <ListTile
+            onPress={logOut}
+            title="Log out"
+            icon="logout"
+            iconColor={colors.yellow}
+          />
         </View>
       </View>
     </Screen>

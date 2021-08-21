@@ -1,20 +1,27 @@
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  View,
-  Text,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 
 import colors from "../config/colors";
 import BodyText from "./BodyText";
 
-export default function Card({ title, image, subtitle, style, onPress }) {
+export default function Card({
+  title,
+  image,
+  subtitle,
+  style,
+  onPress,
+  thumbnailUrl,
+}) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.card, ...style]}>
-        <Image source={image} style={styles.image} />
+        <Image
+          style={styles.image}
+          uri={image}
+          preview={{ uri: thumbnailUrl }}
+          tint="light"
+        />
         <View style={styles.container}>
           <BodyText style={[styles.title]} numberOfLines={2}>
             {title}
@@ -32,7 +39,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
     width: "100%",
-    marginBottom: 20,
+    marginBottom: 10,
     borderRadius: 15,
     overflow: "hidden",
   },

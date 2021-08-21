@@ -1,10 +1,12 @@
 import React from "react";
 import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
+import * as Progress from "react-native-progress";
 
 import colors from "../config/colors";
 import sizes from "../config/sizes";
 
 export default function ButtonBase({
+  loading = false,
   children,
   onPress,
   color = "primary",
@@ -12,7 +14,7 @@ export default function ButtonBase({
 }) {
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={loading ? null : onPress}
       style={[
         styles.button,
         {
@@ -21,7 +23,11 @@ export default function ButtonBase({
         ...style,
       ]}
     >
-      <Text style={styles.text}>{children}</Text>
+      {loading ? (
+        <Progress.CircleSnail indeterminate color={colors.white} size={25} />
+      ) : (
+        <Text style={styles.text}>{children}</Text>
+      )}
     </TouchableOpacity>
   );
 }
@@ -42,5 +48,10 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     fontWeight: "bold",
     letterSpacing: 0.5,
+  },
+  loader: {
+    color: colors.white,
+    width: 18,
+    height: 18,
   },
 });

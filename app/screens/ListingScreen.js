@@ -1,13 +1,7 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import {
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-  Image,
-} from "react-native";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 
 import BodyText from "../components/BodyText";
 import ButtonBase from "../components/ButtonBase";
@@ -18,21 +12,26 @@ import colors from "../config/colors";
 export default function ListingScreen({}) {
   const {
     params: {
-      listing: { title, price, image, seller },
+      listing: { title, price, images },
     },
   } = useRoute();
 
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.image} />
+      <Image
+        style={styles.image}
+        uri={images[0].url}
+        preview={{ uri: images[0].thumbnailUrl }}
+        tint="light"
+      />
       <View style={styles.detailsContainer}>
         <Heading>{title}</Heading>
         <BodyText style={[styles.price]}>{price}</BodyText>
         <ListItem
           style={[styles.sellerContainer]}
-          title={seller.name}
-          subTitle={`${seller.numberOfListings} Listing(s)`}
-          image={seller.image}
+          title="Ayoub Taouarda"
+          subTitle="3 Listings(s)"
+          image={require("../assets/avatar.jpg")}
         />
         <View style={styles.messageContainer}>
           <BodyText style={[styles.messageText]}>

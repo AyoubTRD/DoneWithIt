@@ -1,18 +1,20 @@
 import React from "react";
-import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colors from "../config/colors";
 import routes from "./routes";
 import ListingsNavigator from "./ListingsNavigator";
 import AccountNavigator from "./AccountNavigator";
 import ListingEditScreen from "../screens/ListingEditScreen";
 import NewListingButton from "./NewListingButton";
+import useNotifications from "../hooks/useNotifications";
 
 const Tab = createBottomTabNavigator();
 
 function AppNavigator({}) {
+  useNotifications();
+
   return (
     <Tab.Navigator
       screenOptions={{

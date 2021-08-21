@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
-import * as Location from "expo-location";
 
 import { AppForm, AppFormField, AppSubmitButton } from "../components/forms";
 import AppFormPicker from "../components/forms/AppFormPicker";
 import CategoryPickerItem from "../components/forms/CategoryPickerItem";
 import FormImageInputList from "../components/forms/FormImageInputList";
 import Screen from "../components/Screen";
-import colors from "../config/colors";
-import defaultStyles from "../config/defaultStyles";
 import useLocation from "../hooks/useLocation";
+import useApi from "../hooks/useApi";
+import listingsApi from "../api/listings";
+import AppProgressBar from "../components/AppProgressBar";
+import AppDoneAnimation from "../components/AppDoneAnimation";
+import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   category: Yup.object().required().nullable().label("Category"),
@@ -77,8 +79,21 @@ const categories = [
   },
 ];
 
-function ListingEditScreen(props) {
+function ListingEditScreen() {
+  const [progress, setProgress] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
+
   const location = useLocation();
+  const { request, error, loading } = useApi(listingsApi.postListing);
+
+  const handleSubmit = async (values, { resetForm }) => {
+    setShowProgress(true);
+    await request({ ...values, location }, (progress) => {
+      setProgress(progress.loaded / progress.total);
+    });
+    resetForm();
+    setProgress(0);
+  };
 
   return (
     <Screen>
@@ -91,10 +106,10 @@ function ListingEditScreen(props) {
             category: null,
             images: [],
           }}
-          onSubmit={(values) => console.log(location)}
+          onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
-          <FormImageInputList name="images" maxNumberOfImages={3} />
+          <FormImageInputList name="images" maxNumberOfImages={10} />
           <AppFormField name="title" placeholder="Title" autoCorrect />
           <AppFormField
             name="price"
@@ -120,6 +135,13 @@ function ListingEditScreen(props) {
           <AppSubmitButton>Submit</AppSubmitButton>
         </AppForm>
       </View>
+      {showProgress && (
+        <UploadScreen
+          progress={progress}
+          done={!loading}
+          onDone={() => setShowProgress(false)}
+        />
+      )}
     </Screen>
   );
 }

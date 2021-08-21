@@ -3,8 +3,12 @@ import React from "react";
 
 import ButtonBase from "../ButtonBase";
 
-export default function AppSubmitButton({ children }) {
+export default function AppSubmitButton({ children, ...props }) {
   const { handleSubmit } = useFormikContext();
 
-  return <ButtonBase onPress={handleSubmit}>{children}</ButtonBase>;
+  return (
+    <ButtonBase {...props} onPress={handleSubmit}>
+      {children}
+    </ButtonBase>
+  );
 }
